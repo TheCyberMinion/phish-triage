@@ -1,5 +1,5 @@
 from fileContent import getContentFromFile
-from contentProcess import parseEmailHeader
+from contentProcess import parseEmailHeader, getDmarcPolicy
 from validation import checkDomainMismatch
 
 def main():
@@ -7,13 +7,16 @@ def main():
     # assign the content of .eml file
     fileContent = getContentFromFile()
 
-    # get dict of from, subject, return-path
+    # get dict of keys and data
     headerData = parseEmailHeader(fileContent)
 
     # check from and return domain against each other  
     domainCheck = checkDomainMismatch(headerData)
 
-    print(domainCheck)
+    # get dmarcPolicy
+    dmarcPolicy = getDmarcPolicy(headerData['AuthenticationResults'])
+
+    print(dmarcPolicy)
 
 if __name__ == '__main__':
     main()

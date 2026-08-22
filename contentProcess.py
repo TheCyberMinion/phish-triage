@@ -1,10 +1,8 @@
 import re
 import email, email.policy, email.utils
-from urllib.parse import urlparse
-from fileContent import getContentFromFile
+from urllib.parse import urlparse               
 
-def processContent():
-    content = getContentFromFile()
+def processContent(content):
     return email.message_from_bytes(content, policy=email.policy.default)
 
 def parseEmailHeader(content):

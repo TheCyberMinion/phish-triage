@@ -1,11 +1,10 @@
-from contentProcess import parseEmailHeader, getDmarcPolicy, processContent
+from contentProcess import parseEmailHeader, getDmarcPolicy, processContent, getDomain
 from validation import checkDomainMismatch, extractIOCS, checkURL
-from contentProcess import getDomain
 
 def main():
 
     # assign the content of .eml file
-    msg = processContent()
+    msg = processContent(raw_msg)
 
     # get dict of keys and data
     headerData = parseEmailHeader(msg)
